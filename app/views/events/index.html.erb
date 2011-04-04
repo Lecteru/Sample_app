@@ -1,19 +1,27 @@
 <h1>All events</h1>
 
 <%= link_to "New event", events_new_path %>
+
+
+ <% @events.each do |event| %>
 <table>
   <tr>
-    <th>Name</th>
-    <th></th>
 
+    <th><%= link_to event.name, event %></th>
+    <th>
+    <% if current_user.admin? %>
+  |     <%= link_to "delete", event, :method => :delete, :confirm => "You sure?",
+                                     :title => "Delete #{event.name}" %>
+    <% end %>
+    </th>
   </tr>
+
 
   <tr>
-    <td>Body</td>
-    <td></td>
-
+    <th><%= event.body %></th>
+    <th><%= image_tag event.photo.url(:small) %></th>
   </tr>
-
+  <%end%>
 </table>
 
 

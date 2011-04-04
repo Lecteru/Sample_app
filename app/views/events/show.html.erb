@@ -1,0 +1,16 @@
+<table class="event" summary="Event information">
+  <tr>
+    <td class="main">
+      <h1>
+        <%= @event.name %>
+      </h1>
+      <%= image_tag @event.photo.url(:small) %>
+      <%= simple_format h(@event.body) %>
+    </td>
+    <td class="sidebar round">
+      <strong>Name</strong> Name<br />
+      <strong>URL</strong> Link<br />
+      <strong>Microposts</strong> User.micro.count
+    </td>
+  </tr>
+</table>

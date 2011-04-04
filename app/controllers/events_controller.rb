@@ -5,17 +5,29 @@ class EventsController < ApplicationController
   end
 
   def new
-    @events = Event.new
+    @event = Event.new
   end
 
-
   def create
-    @events = Event.new(params[:event])
-    if @events.save
+    @event = current_user.events.build(params[:event])
+    if @event.save
+       flash[:success] = "Yea!"
        redirect_to events_path
     else
+      flash[:success] = "No!"
       render :action => 'new'
     end
 
+  end
+
+  def show
+    @event = Event.find(params[:id])
+    @title = @event.name
+  end
+
+  def destroy
+    @event.destroy
+    flash[:success] = "Event destroyed."
+    redirect_to events_path
   end
 end
