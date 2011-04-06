@@ -10,8 +10,12 @@
     <th><%= link_to event.name, event %></th>
     <th>
     <% if current_user.admin? %>
-  |     <%= link_to "delete", event, :method => :delete, :confirm => "You sure?",
-                                     :title => "Delete #{event.name}" %>
+
+       <strong>
+        <td><%= link_to 'Edit', edit_event_path(event) %>  |
+        <%= link_to "Delete", event, :method => :delete, :confirm => "You sure?",
+                                     :title => "Delete #{event.name}" %></td>
+       </strong>
     <% end %>
     </th>
   </tr>

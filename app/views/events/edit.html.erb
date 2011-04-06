@@ -1,0 +1,22 @@
+<h1>Edit event</h1>
+
+<%= link_to 'Show', @event %> |
+<%= link_to 'Back', events_path %>
+
+<%= form_for :event, :html => { :multipart => true } do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_area :body%>
+  </div>
+  <p>
+    <%= f.label "Photo" %>
+    <%= f.file_field :photo %>
+  </p>
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
