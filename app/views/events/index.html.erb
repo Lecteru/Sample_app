@@ -1,31 +1,37 @@
 <h1>All events</h1>
 
-<%= link_to "New event", events_new_path %>
+<% form_tag events_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
 
+<p>
+<%= link_to "New event", events_new_path %>
+</p>
 
  <% @events.each do |event| %>
-<table>
-  <tr>
-
-    <th><%= link_to event.name, event %></th>
-    <th>
-    <% if current_user.admin? %>
-
-       <strong>
+    <div class = "event">
+      <p></p>
+     <p><%= link_to event.name, event %></p>
+      <% if current_user.admin? %>
+      <strong>
         <td><%= link_to 'Edit', edit_event_path(event) %>  |
         <%= link_to "Delete", event, :method => :delete, :confirm => "You sure?",
                                      :title => "Delete #{event.name}" %></td>
-       </strong>
+      </strong>
     <% end %>
-    </th>
-  </tr>
 
+        <div class= "Info">
+         By <%=link_to event.user.name, event.user %> on <%= event.created_at%>
+        </div>
 
-  <tr>
-    <th><%= event.body %></th>
-    <th><%= image_tag event.photo.url(:small) %></th>
-  </tr>
+  <div class ="body">
+    <%= image_tag event.photo.url(:small) %>
+    <%= event.body %>
   <%end%>
-</table>
+  </div>
+</div>
 
 

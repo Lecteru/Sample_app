@@ -10,4 +10,12 @@ class Event < ActiveRecord::Base
 
  default_scope :order => 'events.created_at DESC'         #new first, oldest next
 
+  def self.search(search)
+  if search
+    find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+  else
+    find(:all)
+  end
+end
+
 end

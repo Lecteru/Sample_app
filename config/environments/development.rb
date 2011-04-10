@@ -22,5 +22,7 @@ SampleApp::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
+  Paperclip.options[:command_path] = "/c/Program Files/ImageMagick-6.6.9-Q16/"
+
 end
 

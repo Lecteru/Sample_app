@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   def index
     @title = "All events"
-    @events = Event.paginate(:page => params[:page])
+    @events = Event.search(params[:search])
   end
 
   def new
